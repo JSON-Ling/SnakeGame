@@ -219,7 +219,21 @@ namespace SnakeGame
                     Console.SetCursorPosition(last.col, last.row);
                     Console.Write(" ");
                 }
-                
+                //if snake didnt eat in time, 50 will be added to negative points
+                //draw new food randomly after the previous one is eaten
+                if (Environment.TickCount - lastFoodTime >= foodDissapearTime)
+                {
+                    negativePoints = negativePoints + 50;
+                    Console.SetCursorPosition(food.col, food.row);
+                    Console.Write(" ");
+                    do
+                    {
+                        food = new Position(rand.Next(0, Console.WindowHeight),
+                            rand.Next(0, Console.WindowWidth));
+                    }
+                    while (snakeElements.Contains(food));
+                    lastFoodTime = Environment.TickCount;
+                }
                 //draw food with @ symbol
                 Console.SetCursorPosition(food.col, food.row);
                 s.DrawFood();
