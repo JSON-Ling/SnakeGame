@@ -63,10 +63,27 @@ namespace SnakeGame
             Console.Write("@");
         }
 
+        //Method to draw the obstacle
+        public void DrawObstacle()
+        {
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("=");
+        }
+
         public void DrawSnakeBody()
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("*");
+        }
+
+        public void Obstacles(List<Position> obstacles)
+        {
+            Random rand = new Random();
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
         }
 
         public void CheckUserInput(ref int direction, byte right, byte left, byte down, byte up)
@@ -174,6 +191,20 @@ namespace SnakeGame
 
             // Define direction with characteristic of index of array
             s.Direction(directions);
+            List<Position> obstacles = new List<Position>();
+            if (showMenu == 1)
+            {
+                s.Obstacles(obstacles);
+            }
+            if (showMenu == 2)
+            {
+                s.Obstacles(obstacles);
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            }
 
             //Initializes the direction of the snakes head and the food timer and the speed of the snake.
             int direction = right;
@@ -181,7 +212,14 @@ namespace SnakeGame
             lastFoodTime = Environment.TickCount;
             Console.Clear();
             Thread.Sleep(2000);
- 
+
+            //Loop to show obstacles in the console window
+            foreach (Position obstacle in obstacles)
+            {
+                Console.SetCursorPosition(obstacle.col, obstacle.row);
+                s.DrawObstacle();
+            }
+
             //Initialise the snake position in top left corner of the windows
             //The snakes length is reduced to 3* instead of 5.
             Queue<Position> snakeElements = new Queue<Position>();
@@ -255,6 +293,20 @@ namespace SnakeGame
                     Console.SetCursorPosition(food.col, food.row);
                     s.DrawFood();
                     sleepTime--;
+                    Position obstacle = new Position();
+                    do
+                    {
+                        obstacle = new Position(rand.Next(0, Console.WindowHeight),
+                            rand.Next(0, Console.WindowWidth));
+                    }
+                    //new obstacle will not be placed in the current position of the snake and previous obstacles.
+                    //new obstacle will not be placed at the same row & column of food
+                    while (snakeElements.Contains(obstacle) ||
+                        obstacles.Contains(obstacle) ||
+                        (food.row != obstacle.row && food.col != obstacle.row));
+                    obstacles.Add(obstacle);
+                    Console.SetCursorPosition(obstacle.col, obstacle.row);
+                    s.DrawObstacle();
                 }
                 else
                 {
