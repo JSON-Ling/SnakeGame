@@ -93,8 +93,46 @@ namespace SnakeGame
                 }
             }
         }
+        /// <summary>
+        /// win condition
+        /// </summary>
+        ///<param name="snakeElements"></param>
+        ///<param name="negativePoints"></param>
+        public int Wincond(Queue<Position> snakeElements, int negativePoints)
+        {
+            // initial value = 4, value add per food = 1, win condition = 9
+            if(snakeElements.Count==9)
+            {
+                Console.SetCursorPosition(0, 0);
+                Console.ForegroundColor = ConsoleColor.Yellow; //text color when display
 
+                int userPoints = (snakeElements.Count - 4) * 100 - negativePoints;
+                userPoints = Math.Max(userPoints, 0);
 
+                PrintLinesInCenter("You Win!", "Your points are:" + userPoints, "Press enter to exit the game!");
+
+                while(Console.ReadKey().Key != ConsoleKey.Enter) { }//close the program when "enter" is pressed
+                return 1;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// display text on the screen
+        /// </summary>
+        /// <param name="lines"></param>
+        public static void PrintLinesInCenter(params string[] lines)
+        {
+            int verticalStart = (Console.WindowHeight - lines.Length) / 2;
+            int verticalPosition = verticalStart;
+            foreach (var line in lines)
+            {
+                int horizontalStart = (Console.WindowWidth - line.Length) / 2; //start display from horizontal
+                Console.SetCursorPosition(horizontalStart, verticalPosition); //position for the text
+                Console.Write(line); // write text
+                ++verticalPosition; // next line
+            }
+        }
         static void Main(string[] args)
         {
 
@@ -184,9 +222,15 @@ namespace SnakeGame
                 if (snakeNewHead.row < 0) snakeNewHead.row = Console.WindowHeight - 2;
                 if (snakeNewHead.row >= Console.WindowHeight) snakeNewHead.row = 0;
                 if (snakeNewHead.col >= Console.WindowWidth) snakeNewHead.col = 0;
+
+                //Check winning condition
+                int winning = s.Wincond(snakeElements, negativePoints);
+                if (winning == 1) return;
+
                 //The position of the snake head according the body
                 Console.SetCursorPosition(snakeHead.col, snakeHead.row);
                 s.DrawSnakeBody();
+                
                 //Snake head shape when the user presses the key to change his direction
                 snakeElements.Enqueue(snakeNewHead);
                 Console.SetCursorPosition(snakeNewHead.col, snakeNewHead.row);
