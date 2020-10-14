@@ -110,6 +110,25 @@ namespace SnakeGame
                 }
             }
         }
+
+        public int Endgame(int currentTime, Queue<Position> snakeElements, Position snakeNewHead, int negativePoints, List<Position> obstacles)
+        {
+            if(snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead) || (Environment.TickCount-currentTime) > 30000)
+            {
+                Console.SetCursorPosition(0, 0);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                int userPoints = (snakeElements.Count - 4) * 100 - negativePoints;
+                userPoints = Math.Max(userPoints, 0);
+
+                PrintLinesInCenter("Game Over!", "Your points are:" + userPoints, "Press enter to exit the game!");
+
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }//close the program when "enter" is pressed
+                return 1;
+            }
+            return 0;
+        }
+
         /// <summary>
         /// win condition
         /// </summary>
@@ -167,6 +186,7 @@ namespace SnakeGame
             byte up = 3;
             int lastFoodTime = 0;
             int negativePoints = 0;
+            int currentTime = Environment.TickCount;
             int foodDissapearTime = 0;
             double sleepTime = 0;
             Position[] directions = new Position[4];
@@ -264,6 +284,11 @@ namespace SnakeGame
                 //Check winning condition
                 int winning = s.Wincond(snakeElements, negativePoints);
                 if (winning == 1) return;
+
+                //Check end game condition
+                int gameover = s.Endgame(currentTime, snakeElements, snakeNewHead, negativePoints, obstacles);
+                if (gameover == 1)
+                    return;
 
                 //The position of the snake head according the body
                 Console.SetCursorPosition(snakeHead.col, snakeHead.row);
