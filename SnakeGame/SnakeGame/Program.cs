@@ -60,20 +60,20 @@ namespace SnakeGame
 
         public void DrawFood()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Yellow; //could change this to be more visible
             Console.Write("@");
         }
 
         //Method to draw the obstacle
         public void DrawObstacle()
         {
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Gray; //could change this later
             Console.Write("=");
         }
 
         public void DrawSnakeBody()
         {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.White; //could change this to make the snake more visible
             Console.Write("*");
         }
 
