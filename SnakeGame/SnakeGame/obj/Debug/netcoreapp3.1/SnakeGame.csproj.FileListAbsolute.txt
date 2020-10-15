@@ -24,3 +24,25 @@ C:\Users\Marlene\Desktop\DPT1\Sem 1 2020\Games for tutorial\SnakeGame\SnakeGame\
 C:\Users\Marlene\Desktop\DPT1\Sem 1 2020\Games for tutorial\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.dll
 C:\Users\Marlene\Desktop\DPT1\Sem 1 2020\Games for tutorial\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.pdb
 C:\Users\Marlene\Desktop\DPT1\Sem 1 2020\Games for tutorial\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.genruntimeconfig.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.exe
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.deps.json
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.runtimeconfig.json
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.runtimeconfig.dev.json
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.pdb
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.csprojAssemblyReference.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.AssemblyInfoInputs.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.AssemblyInfo.cs
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.pdb
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.genruntimeconfig.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\matter.wav
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\System.Windows.Extensions.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.csproj.CoreCompileInputs.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.csproj.CopyComplete

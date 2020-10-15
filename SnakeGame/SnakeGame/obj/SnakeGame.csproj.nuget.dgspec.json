@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marlene\\Desktop\\DPT1\\Sem 1 2020\\Games for tutorial\\SnakeGame\\SnakeGame\\SnakeGame.csproj": {}
+    "D:\\School\\Y3S1\\DP1\\passtask\\4\\snake new\\SnakeGame\\SnakeGame\\SnakeGame\\SnakeGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marlene\\Desktop\\DPT1\\Sem 1 2020\\Games for tutorial\\SnakeGame\\SnakeGame\\SnakeGame.csproj": {
+    "D:\\School\\Y3S1\\DP1\\passtask\\4\\snake new\\SnakeGame\\SnakeGame\\SnakeGame\\SnakeGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marlene\\Desktop\\DPT1\\Sem 1 2020\\Games for tutorial\\SnakeGame\\SnakeGame\\SnakeGame.csproj",
+        "projectUniqueName": "D:\\School\\Y3S1\\DP1\\passtask\\4\\snake new\\SnakeGame\\SnakeGame\\SnakeGame\\SnakeGame.csproj",
         "projectName": "SnakeGame",
-        "projectPath": "C:\\Users\\Marlene\\Desktop\\DPT1\\Sem 1 2020\\Games for tutorial\\SnakeGame\\SnakeGame\\SnakeGame.csproj",
-        "packagesPath": "C:\\Users\\Marlene\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marlene\\Desktop\\DPT1\\Sem 1 2020\\Games for tutorial\\SnakeGame\\SnakeGame\\obj\\",
+        "projectPath": "D:\\School\\Y3S1\\DP1\\passtask\\4\\snake new\\SnakeGame\\SnakeGame\\SnakeGame\\SnakeGame.csproj",
+        "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
+        "outputPath": "D:\\School\\Y3S1\\DP1\\passtask\\4\\snake new\\SnakeGame\\SnakeGame\\SnakeGame\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Marlene\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\jason\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -41,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "System.Windows.Extensions": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -56,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
