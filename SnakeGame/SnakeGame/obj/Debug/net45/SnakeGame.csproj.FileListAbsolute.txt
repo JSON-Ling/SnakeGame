@@ -6,3 +6,12 @@ E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.AssemblyInf
 E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.AssemblyInfo.cs
 E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.exe
 E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.pdb
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\net45\SnakeGame.exe.config
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\net45\SnakeGame.exe
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\bin\Debug\net45\SnakeGame.pdb
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.csprojAssemblyReference.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.csproj.CoreCompileInputs.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.AssemblyInfoInputs.cache
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.AssemblyInfo.cs
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.exe
+D:\School\Y3S1\DP1\passtask\4\snake new\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.pdb
