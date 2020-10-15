@@ -7,6 +7,7 @@ using System.Threading;
 using System.IO;
 using System.Data;
 using System.Drawing;
+using System.Media;
 
 namespace SnakeGame
 {
@@ -67,6 +68,16 @@ namespace SnakeGame
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("*");
+        }
+
+        public void BgMusic()
+        {
+            //Create SoundPlayer objbect to control background music playback in the game
+            SoundPlayer bgMusic = new SoundPlayer();
+            //Locating the soundtrack in the directory
+            bgMusic.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + @"\matter.wav";
+            //Will loop the background music if it finishes
+            bgMusic.PlayLooping();
         }
 
         public void CheckUserInput(ref int direction, byte right, byte left, byte down, byte up)
@@ -171,7 +182,7 @@ namespace SnakeGame
             }
 
             Snake s = new Snake();
-
+            s.BgMusic();
             // Define direction with characteristic of index of array
             s.Direction(directions);
 

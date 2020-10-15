@@ -1,0 +1,8 @@
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\bin\Debug\net45\SnakeGame.exe
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\bin\Debug\net45\SnakeGame.pdb
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.csprojAssemblyReference.cache
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.csproj.CoreCompileInputs.cache
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.AssemblyInfoInputs.cache
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.AssemblyInfo.cs
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.exe
+E:\SnakeGame\SnakeGame\SnakeGame\SnakeGame\obj\Debug\net45\SnakeGame.pdb
