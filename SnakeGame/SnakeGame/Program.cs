@@ -64,11 +64,19 @@ namespace SnakeGame
             Console.Write("@");
         }
 
+        //Method to draw the obstacle
+        public void DrawObstacle()
+        {
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("=");
+        }
+
         public void DrawSnakeBody()
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("*");
         }
+
 
         public void BgMusic()
         {
@@ -78,6 +86,17 @@ namespace SnakeGame
             bgMusic.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + @"\matter.wav";
             //Will loop the background music if it finishes
             bgMusic.PlayLooping();
+        }
+
+        public void Obstacles(List<Position> obstacles)
+        {
+            Random rand = new Random();
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+
         }
 
         public void CheckUserInput(ref int direction, byte right, byte left, byte down, byte up)
@@ -104,6 +123,25 @@ namespace SnakeGame
                 }
             }
         }
+
+        public int Endgame(int currentTime, Queue<Position> snakeElements, Position snakeNewHead, int negativePoints, List<Position> obstacles)
+        {
+            if(snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead) || (Environment.TickCount-currentTime) > 30000)
+            {
+                Console.SetCursorPosition(0, 0);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                int userPoints = (snakeElements.Count - 4) * 100 - negativePoints;
+                userPoints = Math.Max(userPoints, 0);
+
+                PrintLinesInCenter("Game Over!", "Your points are:" + userPoints, "Press enter to exit the game!");
+
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }//close the program when "enter" is pressed
+                return 1;
+            }
+            return 0;
+        }
+
         /// <summary>
         /// win condition
         /// </summary>
@@ -161,6 +199,7 @@ namespace SnakeGame
             byte up = 3;
             int lastFoodTime = 0;
             int negativePoints = 0;
+            int currentTime = Environment.TickCount;
             int foodDissapearTime = 0;
             double sleepTime = 0;
             Position[] directions = new Position[4];
@@ -185,6 +224,20 @@ namespace SnakeGame
             s.BgMusic();
             // Define direction with characteristic of index of array
             s.Direction(directions);
+            List<Position> obstacles = new List<Position>();
+            if (showMenu == 1)
+            {
+                s.Obstacles(obstacles);
+            }
+            if (showMenu == 2)
+            {
+                s.Obstacles(obstacles);
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+                obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+            }
 
             //Initializes the direction of the snakes head and the food timer and the speed of the snake.
             int direction = right;
@@ -192,7 +245,14 @@ namespace SnakeGame
             lastFoodTime = Environment.TickCount;
             Console.Clear();
             Thread.Sleep(2000);
- 
+
+            //Loop to show obstacles in the console window
+            foreach (Position obstacle in obstacles)
+            {
+                Console.SetCursorPosition(obstacle.col, obstacle.row);
+                s.DrawObstacle();
+            }
+
             //Initialise the snake position in top left corner of the windows
             //The snakes length is reduced to 3* instead of 5.
             Queue<Position> snakeElements = new Queue<Position>();
@@ -238,6 +298,11 @@ namespace SnakeGame
                 int winning = s.Wincond(snakeElements, negativePoints);
                 if (winning == 1) return;
 
+                //Check end game condition
+                int gameover = s.Endgame(currentTime, snakeElements, snakeNewHead, negativePoints, obstacles);
+                if (gameover == 1)
+                    return;
+
                 //The position of the snake head according the body
                 Console.SetCursorPosition(snakeHead.col, snakeHead.row);
                 s.DrawSnakeBody();
@@ -266,6 +331,20 @@ namespace SnakeGame
                     Console.SetCursorPosition(food.col, food.row);
                     s.DrawFood();
                     sleepTime--;
+                    Position obstacle = new Position();
+                    do
+                    {
+                        obstacle = new Position(rand.Next(0, Console.WindowHeight),
+                            rand.Next(0, Console.WindowWidth));
+                    }
+                    //new obstacle will not be placed in the current position of the snake and previous obstacles.
+                    //new obstacle will not be placed at the same row & column of food
+                    while (snakeElements.Contains(obstacle) ||
+                        obstacles.Contains(obstacle) ||
+                        (food.row != obstacle.row && food.col != obstacle.row));
+                    obstacles.Add(obstacle);
+                    Console.SetCursorPosition(obstacle.col, obstacle.row);
+                    s.DrawObstacle();
                 }
                 else
                 {
