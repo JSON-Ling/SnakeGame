@@ -29,11 +29,12 @@ namespace SnakeGame
         private static int MainMenu()
         {
             //main menu options
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Clear();
-            Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Choose an option:");
-            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "1) Start Game");
-            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2) Exit");
-            Console.Write("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Select an option: ");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Choose an option:");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "1) Start Game");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2) Exit");
+            Console.Write("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Select an option: ");
 
             switch (Console.ReadLine())
             {
@@ -67,7 +68,7 @@ namespace SnakeGame
         //Method to draw the obstacle
         public void DrawObstacle()
         {
-            Console.ForegroundColor = ConsoleColor.Gray; //could change this later
+            Console.ForegroundColor = ConsoleColor.Green; //could change this later
             Console.Write("=");
         }
 
@@ -136,6 +137,8 @@ namespace SnakeGame
 
                 PrintLinesInCenter("Game Over!", "Your points are:" + userPoints, "Press enter to exit the game!");
 
+                SaveFile(userPoints);
+
                 while (Console.ReadKey().Key != ConsoleKey.Enter) { }//close the program when "enter" is pressed
                 return 1;
             }
@@ -160,6 +163,8 @@ namespace SnakeGame
 
                 PrintLinesInCenter("You Win!", "Your points are:" + userPoints, "Press enter to exit the game!");
 
+                SaveFile(userPoints);
+
                 while(Console.ReadKey().Key != ConsoleKey.Enter) { }//close the program when "enter" is pressed
                 return 1;
             }
@@ -181,6 +186,44 @@ namespace SnakeGame
                 Console.Write(line); // write text
                 ++verticalPosition; // next line
             }
+        }
+
+        public void SaveFile(int userPoints)
+        {
+            String filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "userPoints.txt");
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    File.Create(filePath).Dispose();
+                    File.WriteAllText(filePath, userPoints.ToString() + Environment.NewLine);
+                }
+                else
+                {
+                    File.AppendAllText(filePath, userPoints.ToString() + Environment.NewLine);
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("{0} Exception Caught.", exception);
+            }
+        }
+
+        public string ReadFile()
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "userPoints.txt");
+            string[] scoreboard = File.ReadAllLines(filePath);
+            int max = scoreboard.Select(int.Parse).Max();
+            string highestpoint = max.ToString();
+            return highestpoint;
+        }
+
+        public void Displaystartscreen()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintLinesInCenter("High Score", ReadFile());
+            Thread.Sleep(3000);
+            Console.Clear();
         }
         static void Main(string[] args)
         {
@@ -221,6 +264,7 @@ namespace SnakeGame
             }
 
             Snake s = new Snake();
+            s.Displaystartscreen();
             s.BgMusic();
             // Define direction with characteristic of index of array
             s.Direction(directions);
