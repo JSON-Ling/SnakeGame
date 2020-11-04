@@ -33,7 +33,8 @@ namespace SnakeGame
             Console.Clear();
             Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Choose an option:");
             Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "1) Start Game");
-            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2) Exit");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2) Game Instructions");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "3) Exit");
             Console.Write("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Select an option: ");
 
             switch (Console.ReadLine())
@@ -41,12 +42,22 @@ namespace SnakeGame
                 //level selector
                 case "1":
                     return 1;
-                //exit the game
                 case "2":
+                    Console.WriteLine("== INSTRUCTIONS ==\n");
+                    Console.WriteLine("Welcome to the snake game!");
+                    Console.WriteLine("> Use the arrow keys to move.");
+                    Console.WriteLine("> Eat 5 food (depicted as an @ symbol) to win the game, eat them as fast as possible to gain more points.");
+                    Console.WriteLine("> Food has a timer and will disappear. Failing to eat food in time can reduce your score.");
+                    Console.WriteLine("> If you hit an obstacle (depicted as an = symbol) or accidentally eat yourself, you will lose the game.");
+                    Console.WriteLine("> You can choose between Normal and Hard difficulty. On harder difficulty, the snake travels faster and is harder to control. Food also disappears faster on harder difficulty.");
+                    Console.Write("\nPress enter to return to main menu");
+                    Console.ReadLine();
+                    return 0;
+                case "3":
                     Environment.Exit(0);
                     return 1;
                 default:
-                    return 1;
+                    return 0;
             }
         }
 
@@ -61,7 +72,7 @@ namespace SnakeGame
 
         public void DrawFood()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow; //could change this to be more visible
+            Console.ForegroundColor = ConsoleColor.Red; //could change this to be more visible
             Console.Write("@");
         }
 
@@ -127,7 +138,7 @@ namespace SnakeGame
 
         public int Endgame(int currentTime, Queue<Position> snakeElements, Position snakeNewHead, int negativePoints, List<Position> obstacles)
         {
-            if(snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead) || (Environment.TickCount-currentTime) > 30000)
+            if(snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
             {
                 Console.SetCursorPosition(0, 0);
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -345,7 +356,10 @@ namespace SnakeGame
                 //Check end game condition
                 int gameover = s.Endgame(currentTime, snakeElements, snakeNewHead, negativePoints, obstacles);
                 if (gameover == 1)
+                {
                     return;
+                }
+                    
 
                 //The position of the snake head according the body
                 Console.SetCursorPosition(snakeHead.col, snakeHead.row);
