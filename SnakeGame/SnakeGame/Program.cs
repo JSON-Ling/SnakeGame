@@ -29,11 +29,12 @@ namespace SnakeGame
         private static int MainMenu()
         {
             //main menu options
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Clear();
-            Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Choose an option:");
-            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "1) Start Game");
-            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2) Exit");
-            Console.Write("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Select an option: ");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Choose an option:");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "1) Start Game");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2) Exit");
+            Console.Write("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Select an option: ");
 
             switch (Console.ReadLine())
             {
@@ -60,22 +61,23 @@ namespace SnakeGame
 
         public void DrawFood()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Yellow; //could change this to be more visible
             Console.Write("@");
         }
 
         //Method to draw the obstacle
         public void DrawObstacle()
         {
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Green; //could change this later
             Console.Write("=");
         }
 
         public void DrawSnakeBody()
         {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.White; //could change this to make the snake more visible
             Console.Write("*");
         }
+
 
         public void BgMusic()
         {
@@ -95,6 +97,7 @@ namespace SnakeGame
             obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
             obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
             obstacles.Add(new Position(rand.Next(1, Console.WindowHeight), rand.Next(0, Console.WindowWidth)));
+
         }
 
         public void CheckUserInput(ref int direction, byte right, byte left, byte down, byte up)
@@ -121,6 +124,27 @@ namespace SnakeGame
                 }
             }
         }
+
+        public int Endgame(int currentTime, Queue<Position> snakeElements, Position snakeNewHead, int negativePoints, List<Position> obstacles)
+        {
+            if(snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead) || (Environment.TickCount-currentTime) > 30000)
+            {
+                Console.SetCursorPosition(0, 0);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                int userPoints = (snakeElements.Count - 4) * 100 - negativePoints;
+                userPoints = Math.Max(userPoints, 0);
+
+                PrintLinesInCenter("Game Over!", "Your points are:" + userPoints, "Press enter to exit the game!");
+
+                SaveFile(userPoints);
+
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }//close the program when "enter" is pressed
+                return 1;
+            }
+            return 0;
+        }
+
         /// <summary>
         /// win condition
         /// </summary>
@@ -138,6 +162,8 @@ namespace SnakeGame
                 userPoints = Math.Max(userPoints, 0);
 
                 PrintLinesInCenter("You Win!", "Your points are:" + userPoints, "Press enter to exit the game!");
+
+                SaveFile(userPoints);
 
                 while(Console.ReadKey().Key != ConsoleKey.Enter) { }//close the program when "enter" is pressed
                 return 1;
@@ -161,6 +187,44 @@ namespace SnakeGame
                 ++verticalPosition; // next line
             }
         }
+
+        public void SaveFile(int userPoints)
+        {
+            String filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "userPoints.txt");
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    File.Create(filePath).Dispose();
+                    File.WriteAllText(filePath, userPoints.ToString() + Environment.NewLine);
+                }
+                else
+                {
+                    File.AppendAllText(filePath, userPoints.ToString() + Environment.NewLine);
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("{0} Exception Caught.", exception);
+            }
+        }
+
+        public string ReadFile()
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "userPoints.txt");
+            string[] scoreboard = File.ReadAllLines(filePath);
+            int max = scoreboard.Select(int.Parse).Max();
+            string highestpoint = max.ToString();
+            return highestpoint;
+        }
+
+        public void Displaystartscreen()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintLinesInCenter("High Score", ReadFile());
+            Thread.Sleep(3000);
+            Console.Clear();
+        }
         static void Main(string[] args)
         {
 
@@ -178,6 +242,7 @@ namespace SnakeGame
             byte up = 3;
             int lastFoodTime = 0;
             int negativePoints = 0;
+            int currentTime = Environment.TickCount;
             int foodDissapearTime = 0;
             double sleepTime = 0;
             Position[] directions = new Position[4];
@@ -199,9 +264,9 @@ namespace SnakeGame
             }
 
             Snake s = new Snake();
-
-            // Define direction with characteristic of index of array
+            s.Displaystartscreen();
             s.BgMusic();
+            // Define direction with characteristic of index of array
             s.Direction(directions);
             List<Position> obstacles = new List<Position>();
             if (showMenu == 1)
@@ -277,6 +342,11 @@ namespace SnakeGame
                 int winning = s.Wincond(snakeElements, negativePoints);
                 if (winning == 1) return;
 
+                //Check end game condition
+                int gameover = s.Endgame(currentTime, snakeElements, snakeNewHead, negativePoints, obstacles);
+                if (gameover == 1)
+                    return;
+
                 //The position of the snake head according the body
                 Console.SetCursorPosition(snakeHead.col, snakeHead.row);
                 s.DrawSnakeBody();
@@ -339,9 +409,10 @@ namespace SnakeGame
                         food = new Position(rand.Next(0, Console.WindowHeight),
                             rand.Next(0, Console.WindowWidth));
                     }
-                    while (snakeElements.Contains(food));
+                    while (snakeElements.Contains(food) || obstacles.Contains(food));
                     lastFoodTime = Environment.TickCount;
                 }
+
                 //draw food with @ symbol
                 Console.SetCursorPosition(food.col, food.row);
                 s.DrawFood();
