@@ -68,9 +68,13 @@ namespace SnakeGame
                     Console.ReadLine();
                     return 0;
                 case "3":
-                    string path = @"C:\Users\Public\Documents\userPoints.txt";
-                    string readText = File.ReadAllText(path);
-                    Console.WriteLine(readText);
+                    string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "userPoints.txt");
+                    string[] scoreboard = File.ReadAllLines(filePath);
+                    Console.WriteLine("All scores: ");
+                    foreach(var x in scoreboard)
+                    {
+                        Console.WriteLine(x);
+                    }
                     Console.ReadKey();
                     return 0;
                 case "4":
@@ -238,7 +242,7 @@ namespace SnakeGame
                 }
                 else
                 {
-                    File.AppendAllText(filePath, userPoints.ToString() + Environment.NewLine);
+                    File.AppendAllText(filePath,userPoints.ToString() + Environment.NewLine);
                 }
             }
             catch (Exception exception)
