@@ -34,14 +34,27 @@ namespace SnakeGame
             Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Choose an option:");
             Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "1) Start Game");
             Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2) Game Instructions");
-            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "3) Exit");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "3) High Scores");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "4) Exit");
             Console.Write("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Select an option: ");
 
             switch (Console.ReadLine())
             {
                 //level selector
                 case "1":
-                    return 1;
+                    Console.Clear();
+                    Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "1)Normal Mode");
+                    Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "2)Hard Mode");
+                    Console.Write("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "Select an option: ");
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            return 1;
+                        case "2":
+                            return 2;
+                        default:
+                            return 1;
+                    }
                 case "2":
                     Console.WriteLine("== INSTRUCTIONS ==\n");
                     Console.WriteLine("Welcome to the snake game!");
@@ -55,6 +68,12 @@ namespace SnakeGame
                     Console.ReadLine();
                     return 0;
                 case "3":
+                    string path = @"C:\Users\Public\Documents\userPoints.txt";
+                    string readText = File.ReadAllText(path);
+                    Console.WriteLine(readText);
+                    Console.ReadKey();
+                    return 0;
+                case "4":
                     Environment.Exit(0);
                     return 1;
                 default:
