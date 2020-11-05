@@ -1,0 +1,5 @@
+
+*.lock
+*.ide-shm
+SnakeGame/.vs/SnakeGame/v15/Server/sqlite3/storage.ide-shm
+*.ide-shm
