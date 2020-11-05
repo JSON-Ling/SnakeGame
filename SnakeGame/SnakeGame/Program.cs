@@ -170,6 +170,9 @@ namespace SnakeGame
             // initial value = 4, value add per food = 1, win condition = 9
             if(snakeElements.Count==9)
             {
+                SoundPlayer gameOverMusic = new SoundPlayer();
+                gameOverMusic.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + @"\elevbell1.wav";
+                gameOverMusic.Play();
                 Console.SetCursorPosition(0, 0);
                 Console.ForegroundColor = ConsoleColor.Yellow; //text color when display
 
