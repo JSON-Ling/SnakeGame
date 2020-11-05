@@ -140,6 +140,10 @@ namespace SnakeGame
         {
             if(snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
             {
+                SoundPlayer gameOverMusic = new SoundPlayer();
+                gameOverMusic.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + @"\flatline.wav";
+                gameOverMusic.Play();
+
                 Console.SetCursorPosition(0, 0);
                 Console.ForegroundColor = ConsoleColor.Yellow;
 

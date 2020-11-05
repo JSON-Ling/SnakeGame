@@ -5,4 +5,14 @@
     <TargetFramework>net45</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="flatline.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="flatline.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
