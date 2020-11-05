@@ -47,7 +47,8 @@ namespace SnakeGame
                     Console.WriteLine("Welcome to the snake game!");
                     Console.WriteLine("> Use the arrow keys to move.");
                     Console.WriteLine("> Eat 5 food (depicted as an @ symbol) to win the game, eat them as fast as possible to gain more points.");
-                    Console.WriteLine("> Food has a timer and will disappear. Failing to eat food in time can reduce your score.");
+                    Console.WriteLine("> Food has a timer and will disappear. Failing to eat food in time will reduce your score by 50.");
+                    Console.WriteLine("> Your score will also constantly reduce by 1 so think fast and use the borders of the game to travel quickly from one side to the other!");
                     Console.WriteLine("> If you hit an obstacle (depicted as an = symbol) or accidentally eat yourself, you will lose the game.");
                     Console.WriteLine("> You can choose between Normal and Hard difficulty. On harder difficulty, the snake travels faster and is harder to control. Food also disappears faster on harder difficulty.");
                     Console.Write("\nPress enter to return to main menu");
