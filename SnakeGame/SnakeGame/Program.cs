@@ -260,6 +260,14 @@ namespace SnakeGame
             return highestpoint;
         }
 
+        public void displayScore(Queue<Position> snakeElements, int negativePoints)
+        {
+            Console.SetCursorPosition(0, 0);
+            int userPoints = (snakeElements.Count - 4) * 100 - negativePoints;
+            Console.WriteLine(" ");
+            Console.WriteLine(userPoints);
+        }
+
         public void Displaystartscreen()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -369,6 +377,7 @@ namespace SnakeGame
                 //negative points increased if the food is not eaten in time
                 negativePoints++;
                 s.CheckUserInput(ref direction, right, left, down, up);
+                s.displayScore(snakeElements, negativePoints);
                 //Manages the position of the snakes head.
                 Position snakeHead = snakeElements.Last();
                 Position nextDirection = directions[direction];
