@@ -265,7 +265,9 @@ namespace SnakeGame
             Console.SetCursorPosition(0, 0);
             int userPoints = (snakeElements.Count - 4) * 100 - negativePoints;
             userPoints = Math.Max(userPoints, 0);
-            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + userPoints);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" ");
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\tScore: " + userPoints);
         }
 
         public void Displaystartscreen()
