@@ -264,8 +264,8 @@ namespace SnakeGame
         {
             Console.SetCursorPosition(0, 0);
             int userPoints = (snakeElements.Count - 4) * 100 - negativePoints;
-            Console.WriteLine(" ");
-            Console.WriteLine(userPoints);
+            userPoints = Math.Max(userPoints, 0);
+            Console.WriteLine("\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + userPoints);
         }
 
         public void Displaystartscreen()
@@ -377,7 +377,7 @@ namespace SnakeGame
                 //negative points increased if the food is not eaten in time
                 negativePoints++;
                 s.CheckUserInput(ref direction, right, left, down, up);
-                s.displayScore(snakeElements, negativePoints);
+                
                 //Manages the position of the snakes head.
                 Position snakeHead = snakeElements.Last();
                 Position nextDirection = directions[direction];
@@ -474,6 +474,8 @@ namespace SnakeGame
                 sleepTime -= 0.01;
                 //pause the execution of snake moving speed
                 Thread.Sleep((int)sleepTime);
+
+                s.displayScore(snakeElements, negativePoints);
             }
         }
     }
